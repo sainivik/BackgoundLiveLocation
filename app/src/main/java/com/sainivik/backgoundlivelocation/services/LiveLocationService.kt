@@ -71,13 +71,13 @@ open class LiveLocationService : Service() {
                         } else {
                             locationManager!!.requestLocationUpdates(
                                 LocationManager.NETWORK_PROVIDER,
-                                10000,
+                                30000,
                                 0f,
                                 listener as LocationListener
                             )
                             locationManager!!.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
-                                10000,
+                                30000,
                                 0f,
                                 listener!!
                             )
