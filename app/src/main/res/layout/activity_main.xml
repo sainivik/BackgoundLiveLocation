@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isServiceRunning"
+            type="Boolean" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.mainactivity.MainActivity">
+
+        <Button
+            android:id="@+id/btnStartTracking"
+
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Start Tracking"
+            android:textSize="14sp"
+            android:visibility="@{safeUnbox(isServiceRunning)?View.GONE:View.VISIBLE}" />
+
+        <Button
+            android:id="@+id/btnStopTracking"
+
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Stop Tracking"
+            android:textSize="14sp"
+            android:visibility="@{safeUnbox(isServiceRunning)?View.VISIBLE:View.GONE}" />
+
+        <Button
+            android:id="@+id/btnShowLogs"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Show Logs"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</layout>
