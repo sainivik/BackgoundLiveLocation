@@ -19,10 +19,6 @@ import com.sainivik.backgoundlivelocation.util.MiscUtil
 class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var viewModel: MainActivityViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun setBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)

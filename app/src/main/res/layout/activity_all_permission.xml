@@ -97,7 +97,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="This app require your location to provide you jobs."
+                                android:text="This app require your location."
                                 android:textColor="@color/color_121212"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
@@ -150,7 +150,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="This app require your GPS to provide you nearby jobs."
+                                android:text="This app require your GPS."
                                 android:textColor="@color/color_121212"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
