@@ -25,7 +25,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback {
     lateinit var mMap: GoogleMap
     var list: ArrayList<LocationTable> = ArrayList<LocationTable>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
