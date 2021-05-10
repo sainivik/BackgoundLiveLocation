@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 class MainActivityViewModel : ViewModel() {
 
 
-     fun saveLocationToLocalDB(loc: LocationTable, context: Context) {
+    fun saveLocationToLocalDB(loc: LocationTable, context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
             MyAppDatabase.getInstance(context).getLocationMaster().insert(loc)
             withContext(Dispatchers.Main) {

@@ -31,7 +31,6 @@ open class LiveLocationService : Service() {
         val ACTION_STOP_FOREGROUND_SERVICE = "ACTION_STOP_FOREGROUND_SERVICE"
     }
 
-    open var intent: Intent? = null
     var locationManager: LocationManager? = null
     var listener: MyLocationListener? = null
     var previousBestLocation: Location? = null
@@ -129,16 +128,10 @@ open class LiveLocationService : Service() {
                 loc.latitude
                 loc.longitude
 
-                /* intent?.putExtra("Latitude", loc.latitude)
-                 intent?.putExtra("Longitude", loc.longitude)
-                 intent?.putExtra("Provider", loc.provider)
-                 sendBroadcast(intent)*/
             }
         }
 
         fun updateLocation(location: Location) {
-
-            //  val df2 = DecimalFormat("#.####")
             val location1 = LocationTable(
                 location.time,
                 location.latitude,
@@ -152,7 +145,7 @@ open class LiveLocationService : Service() {
 
             )
 
-            SaveLocationToLocalDB(location1!!)
+            saveLocationToLocalDB(location1!!)
 
             previousBestLocation = location
         }
@@ -225,7 +218,7 @@ open class LiveLocationService : Service() {
 
     }
 
-    private fun SaveLocationToLocalDB(loc: LocationTable) {
+    private fun saveLocationToLocalDB(loc: LocationTable) {
         CoroutineScope(Dispatchers.IO).launch {
             MyAppDatabase.getInstance(applicationContext).getLocationMaster().insert(loc)
             withContext(Dispatchers.Main) {
@@ -235,9 +228,8 @@ open class LiveLocationService : Service() {
 
     }
 
-
+    /*showing notification for background service*/
     fun locationServiceNotification(activity: Context): Notification? {
-
         val builder = NotificationCompat.Builder(activity, "my_service")
         val bigTextStyle = NotificationCompat.BigTextStyle()
         bigTextStyle.setBigContentTitle(" Location Service Updating")
@@ -245,7 +237,7 @@ open class LiveLocationService : Service() {
         builder.setStyle(bigTextStyle)
         builder.setWhen(System.currentTimeMillis())
         builder.setSmallIcon(R.mipmap.ic_launcher_round)
-        builder.priority = Notification.PRIORITY_LOW
+        builder.priority = Notification.PRIORITY_HIGH
         builder.setSound(null)
         builder.setAutoCancel(false)
         builder.setVibrate(null)
@@ -256,7 +248,7 @@ open class LiveLocationService : Service() {
             val notificationChannel = NotificationChannel(
                 "my_service",
                 "app Service",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel.setSound(null, null)
             notificationChannel.setShowBadge(false)

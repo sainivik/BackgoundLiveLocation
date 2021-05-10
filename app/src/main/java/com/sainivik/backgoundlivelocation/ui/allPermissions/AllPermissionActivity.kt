@@ -21,7 +21,6 @@ import com.sainivik.backgoundlivelocation.util.PermissionHelper.Permissions.Comp
 
 
 class AllPermissionActivity : BaseActivity() {
-
     lateinit var binding: ActivityAllPermissionBinding
     var from = ""
     override fun setBinding() {
@@ -29,9 +28,6 @@ class AllPermissionActivity : BaseActivity() {
             this,
             R.layout.activity_all_permission
         )
-        /*  binding.isLocationEnabled = PermissionHelper.checkLocationPermission(this)
-          binding.isGPSEnabled = checkGPSPermission()
-          binding.isNotificationEnabled = MiscUtil.checkNotificationIsEnabled(this)*/
         getIntentData()
         binding.showIgnoreBatteryOptimization = Build.VERSION.SDK_INT >= 23
         setListener()
@@ -55,13 +51,10 @@ class AllPermissionActivity : BaseActivity() {
 
 
     private fun getIntentData() {
-
-
     }
 
 
     override fun attachViewModel() {
-
     }
 
     override fun onBackPressed() {
@@ -71,13 +64,8 @@ class AllPermissionActivity : BaseActivity() {
 
 
     private fun setListener() {
-
         binding.tvNext.setOnClickListener {
-
-            if (MiscUtil.checkAllRequiredPermission(
-                    this
-                )
-            ) {
+            if (MiscUtil.checkAllRequiredPermission(this)) {
                 finish()
             } else {
                 Toast.makeText(this, "Please allow all permission.", Toast.LENGTH_SHORT).show()
@@ -100,7 +88,6 @@ class AllPermissionActivity : BaseActivity() {
         }
 
         binding.swBatteryOptimization.setOnCheckedChangeListener { buttonView, isChecked ->
-
             if (isChecked && !binding.ignoreBatteryOptimization!!) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     startActivity(

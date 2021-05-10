@@ -31,14 +31,12 @@ class MainActivity : BaseActivity() {
 
     override fun attachViewModel() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        if (isMyServiceRunning(LiveLocationService::class.java, this@MainActivity)) {
-            binding.isServiceRunning = true
-        } else {
-            binding.isServiceRunning = false
-
-        }
+        /*checking service is running or not*/
+        binding.isServiceRunning =
+            isMyServiceRunning(LiveLocationService::class.java, this@MainActivity)
     }
 
+    /*setting click listener to start and stop service*/
     private fun setListener() {
         binding.btnStartTracking.setOnClickListener {
             if (MiscUtil.checkAllRequiredPermission(this)) {
@@ -71,12 +69,13 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /*save start and stop time in DB*/
     private fun setStartAndStopTime(isStart: Boolean) {
         var type = 0
-        if (isStart) {
-            type = 2
+        type = if (isStart) {
+            2
         } else {
-            type = 3
+            3
         }
         var time = System.currentTimeMillis()
         val location1 = LocationTable(
@@ -94,6 +93,7 @@ class MainActivity : BaseActivity() {
         viewModel.saveLocationToLocalDB(location1, this@MainActivity)
     }
 
+    /*method to check is service running or not*/
     private fun isMyServiceRunning(serviceClass: Class<*>, context: Context): Boolean {
         val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         for (service in manager.getRunningServices(Int.MAX_VALUE)) {

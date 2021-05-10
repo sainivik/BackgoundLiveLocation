@@ -15,14 +15,5 @@ class MapActivityViewModel : ViewModel() {
 
     internal var response = MutableLiveData<EventTask<Any>>()
 
-     fun getLocationToLocalDB(context: Context) {
-        CoroutineScope(Dispatchers.IO).launch {
-          var list=  MyAppDatabase.getInstance(context).getLocationMaster().getAllLocations()
-            withContext(Dispatchers.Main) {
-                response.postValue(EventTask.success(list, Task.LOCATION_FROM_DB))
-            }
-        }
-
-    }
 
 }

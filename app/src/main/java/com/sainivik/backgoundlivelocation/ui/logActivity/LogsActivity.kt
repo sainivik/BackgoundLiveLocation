@@ -20,6 +20,7 @@ class LogsActivity : BaseActivity() {
     lateinit var viewModel: LogsActivityViewModel
     lateinit var adapter: LocationLogsAdapter
     var list: ArrayList<LocationTable> = ArrayList<LocationTable>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,13 +31,15 @@ class LogsActivity : BaseActivity() {
         setAdapter()
     }
 
+    /*setting adapter to sow logs*/
     private fun setAdapter() {
-
         adapter = LocationLogsAdapter(list, object
             : RecyclerClickListener {
             override fun click(view: View, position: Int) {
+                var temp: ArrayList<LocationTable> = ArrayList<LocationTable>()
+                temp.add(list[position])
                 var intent = Intent(this@LogsActivity, MapActivity::class.java)
-                intent.putExtra("data", list[position])
+                intent.putExtra("data", temp)
                 startActivity(intent)
             }
         })
@@ -45,6 +48,7 @@ class LogsActivity : BaseActivity() {
 
     override fun attachViewModel() {
         viewModel = ViewModelProvider(this).get(LogsActivityViewModel::class.java)
+        /*getting location logs data from DB*/
         viewModel.getLocationToLocalDB(this@LogsActivity)
         viewModel.response.observe(
             this,
@@ -56,8 +60,11 @@ class LogsActivity : BaseActivity() {
         when (eventTask.status) {
 
             Status.LOADING -> {
+                binding.showProgress = true
             }
             Status.SUCCESS -> {
+                binding.showProgress = false
+
                 if (eventTask.data != null) {
                     var dataList: List<LocationTable> = eventTask.data as List<LocationTable>
                     if (dataList != null) {
@@ -69,11 +76,10 @@ class LogsActivity : BaseActivity() {
 
             }
             Status.ERROR -> {
-
+                binding.showProgress = false
 
             }
         }
-
 
     }
 

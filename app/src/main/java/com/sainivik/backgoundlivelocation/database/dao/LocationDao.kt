@@ -6,15 +6,13 @@ import com.sainivik.backgoundlivelocation.model.LocationTable
 @Dao
 interface LocationDao {
 
-    //Adds a contact to the database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(LocationTable: LocationTable?): Long
 
-    // Removes a contact from the database
     @Delete
     fun delete(person: LocationTable?)
 
-    // Gets all contact in the database
+    // Gets all location in the database
     @Query("select * from locationMaster ORDER BY Loc_Time DESC")
     fun getAllLocations(): List<LocationTable>
 

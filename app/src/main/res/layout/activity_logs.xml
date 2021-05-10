@@ -4,6 +4,12 @@
     <data>
 
         <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+        <variable
             name="adapter"
             type="com.sainivik.backgoundlivelocation.adapter.LocationLogsAdapter" />
 
@@ -16,6 +22,12 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".ui.mainactivity.MainActivity">
+
+        <ProgressBar
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:indeterminateOnly="true"
+            android:visibility="@{safeUnbox(showProgress)?View.VISIBLE:View.GONE}" />
 
         <androidx.recyclerview.widget.RecyclerView
             adapter="@{adapter}"
