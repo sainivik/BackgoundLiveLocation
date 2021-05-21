@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MapActivityViewModel : ViewModel() {
-
     internal var response = MutableLiveData<EventTask<Any>>()
 
 
