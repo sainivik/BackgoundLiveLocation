@@ -21,6 +21,7 @@ class LogsActivity : BaseActivity() {
     lateinit var adapter: LocationLogsAdapter
     var list: ArrayList<LocationTable> = ArrayList<LocationTable>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
