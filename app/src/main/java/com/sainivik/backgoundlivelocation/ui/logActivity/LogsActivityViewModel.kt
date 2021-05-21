@@ -14,8 +14,7 @@ import kotlinx.coroutines.withContext
 class LogsActivityViewModel : ViewModel() {
 
     internal var response = MutableLiveData<EventTask<Any>>()
-
-     fun getLocationToLocalDB(context: Context) {
+    fun getLocationToLocalDB(context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
           var list=  MyAppDatabase.getInstance(context).getLocationMaster().getAllLocations()
             withContext(Dispatchers.Main) {
