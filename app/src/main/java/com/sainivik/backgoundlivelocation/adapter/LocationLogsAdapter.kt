@@ -12,6 +12,7 @@ import com.sainivik.backgoundlivelocation.model.LocationTable
 import com.sainivik.backgoundlivelocation.util.MiscUtil
 
 class LocationLogsAdapter(
+
     private var list: ArrayList<LocationTable>,
     private var listener: RecyclerClickListener
 ) : RecyclerView.Adapter<LocationLogsAdapter.MyViewHolder>() {
@@ -31,6 +32,8 @@ class LocationLogsAdapter(
         }
 
     }
+
+
 
     override fun getItemCount(): Int {
         return list.size
